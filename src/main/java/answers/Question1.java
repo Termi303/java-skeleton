@@ -6,8 +6,9 @@ public class Question1 {
 		int result = 0;
 		for(int i = 0; i < portfolios.length; i++) {
 			for(int j = i+1; j < portfolios.length; j++) {
-				if( (portfolios[i]^portfolios[j]) > result ) {
-					result = (portfolios[i]^portfolios[j]);
+				int tmp = (portfolios[i]^portfolios[j]);
+				if( tmp > result ) {
+					result = tmp;
 				}
 			}
 		}
