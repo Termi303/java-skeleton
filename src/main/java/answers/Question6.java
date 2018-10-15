@@ -27,7 +27,7 @@ public class Question6 {
 		int[] minDistance = new int[numServers];
 		boolean[] visited = new boolean[numServers];
 		for(int i = 0; i < numServers; i++) {
-			minDistance[i] = 1000000007;
+			minDistance[i] = 2147483647;
 		}
 
 		SortedSet<Pair> S = new TreeSet<>();
