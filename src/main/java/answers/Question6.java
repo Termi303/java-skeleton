@@ -3,14 +3,15 @@ import java.util.*;
 
 public class Question6 {
 
-	public class Pair implements Comparable<Pair> {
+	public static class Pair implements Comparable<Pair> {
 		int where;
 		int dist;
 		Pair(int w, int d) {
 			where = w;
 			dist = d;
 		}
-		int compareTo(Pair p) {
+
+		public int compareTo(Pair p) {
 			if(dist == p.dist) {
 				if(where == p.where) return 0;
 				if(where < p.where) return -1;
@@ -28,10 +29,12 @@ public class Question6 {
 		for(int i = 0; i < numServers; i++) {
 			minDistance[i] = 1000000007;
 		}
-		Set<Pair> S = new TreeSet<>();
+
+		SortedSet<Pair> S = new TreeSet<>();
 		S.add(new Pair(0, 0));
 		while(!S.isEmpty() && !visited[targetServer]) {
-			Pair p = S.pollFirst();
+			Pair p = S.first();
+			S.remove(S.first());
 			if(visited[p.where]) continue;
 			visited[p.where] = true;
 			minDistance[p.where] = p.dist;
