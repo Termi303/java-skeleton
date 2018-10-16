@@ -16,7 +16,7 @@ public class Question4 {
 			int start = 0, end = 0;
 			int sum = 0;
 			while(end < arr[i].length) {
-				if(rows[i][j].equals("X")) {
+				if(rows[i][end].equals("X")) {
 					end++;
 					start = end;
 					sum = 0;
