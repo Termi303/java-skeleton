@@ -5,13 +5,11 @@ public class Question5 {
 
 	public static int shareExchange(int[] allowedAllocations, int totalValue) {
 		int[] result = new int[totalValue+1];
-		Arrays.sort(allowedAllocations);
+		//Arrays.sort(allowedAllocations);
 		for(int i = 1; i <= totalValue; i++) {
-			result[i] = 2147483647;
+			result[i] = 1000000007;
 		}
-		int val = 0;
-		for(int j = allowedAllocations.length-1; j >= 0; j--) {
-			val = allowedAllocations[j];
+		for(int val : allowedAllocations) {
 			for(int i = 0; i+val <= totalValue; i++) {
 				if(result[i]+1 < result[i+val]) {
 					result[i+val] = result[i]+1;
