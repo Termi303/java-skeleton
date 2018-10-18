@@ -33,6 +33,7 @@ public class Question4 {
 				}
 			}
 		}
+		if(result == bigNumber) return 0;
 		return (int)result;
 	}
 
