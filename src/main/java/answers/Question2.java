@@ -39,6 +39,8 @@ public class Question2 {
 		int result = 2147483647;
 		int iterIn = 0;
 		int iterOut = 0;
+		if(listIn.size() > 0 && result > listIn.get(0)) result = listIn.get(0);
+		if(listOut.size() > 0 && result > listOut.get(0)) result = listOut.get(0);
 		while(iterIn < listIn.size() && iterOut < listOut.size()) {
 			int alfa = listIn.get(iterIn);
 			int beta = listOut.get(iterOut);
