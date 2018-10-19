@@ -30,11 +30,10 @@ public class Question6 {
 			minDistance[i] = 2147483647;
 		}
 
-		SortedSet<Pair> S = new TreeSet<>();
+		PriorityQueue<Pair> S = new PriorityQueue<>();
 		S.add(new Pair(0, 0));
-		while(!S.isEmpty() && !visited[targetServer]) {
-			Pair p = S.first();
-			S.remove(S.first());
+		while(S.size() > 0 && !visited[targetServer]) {
+			Pair p = S.poll();
 			if(visited[p.where]) continue;
 			visited[p.where] = true;
 			minDistance[p.where] = p.dist;
