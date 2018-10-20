@@ -3,39 +3,33 @@ import java.util.*;
 
 public class Question2 {
 
+	private static void processCashflow(int[] cashflow, List<Integer> list) {
+		for(int x : cashflow) {
+			List<Integer> toAdd = new ArrayList<>();
+			if(!list.contains(x)) toAdd.add(x);
+			for(int y : list) {
+				if(!list.contains(x+y)) toAdd.add(x+y);
+			}
+			list.addAll(toAdd);
+		}
+	}
+
 	public static int equallyBalancedCashFlow(int[] cashflowIn, int[] cashflowOut) {
-		boolean[][] arr = new boolean[100007][2];
-		//Arrays.sort(allowedAllocations);
-		arr[0][0] = arr[0][1] = true;
-		int sumIn = 0;
-		for(int j : cashflowIn) sumIn += j;
-		for(int val : cashflowIn) {
-			for(int i = sumIn-val; i >= 0; i--) {
-				if(arr[i][0]) {
-					arr[i+val][0] = true;
-				}
-			}
-		}
-		int sumOut = 0;
-		for(int j : cashflowOut) sumOut += j;
-		for(int val : cashflowOut) {
-			for(int i = sumOut-val; i >= 0; i--) {
-				if(arr[i][1]) {
-					arr[i+val][1] = true;
-				}
-			}
-		}
-		int bigger = Math.max(sumIn, sumOut);
 		List<Integer> listIn = new ArrayList<>();
 		List<Integer> listOut = new ArrayList<>();
-		for(int i = 1; i <= bigger; i++) {
-			if(arr[i][0] == true && arr[i][1] == true) return 0;
-			if(arr[i][0] == true) {
-				listIn.add(i);
-			} else if(arr[i][1] == true) {
-				listOut.add(i);
-			}
-		}
+
+		Arrays.sort(cashflowIn);
+		Arrays.sort(cashflowOut);
+
+		processCashflow(cashflowIn, listIn);
+		processCashflow(cashflowOut, listOut);
+
+		Collections.sort(listIn);
+		Collections.sort(listOut);
+
+		//System.out.println("listIn.size == " + listIn.size());
+		//System.out.println("listOut.size == " + listOut.size());
+
 		int result = 2147483647;
 		int iterIn = 0;
 		int iterOut = 0;
