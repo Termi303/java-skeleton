@@ -7,15 +7,12 @@ public class Question4 {
 		long result = bigNumber;
 		long[][] arr = new long[rows.length][rows[0].length];
 		for(int i = 0; i < rows.length; i++) {
-			for(int j = 0; j < rows[i].length; j++) {
-				if(rows[i][j].equals("X")) arr[i][j] = -1L;
-				else arr[i][j] = (long)(Integer.parseInt(rows[i][j]));
-			}
-		}
-		for(int i = 0; i < arr.length; i++) {
 			int start = 0, end = 0;
 			long sum = 0L;
 			while(end < arr[i].length) {
+				if(rows[i][end].equals("X")) arr[i][end] = -1L;
+				else arr[i][end] = (long)(Integer.parseInt(rows[i][end]));
+
 				if(arr[i][end] == -1L) {
 					end++;
 					start = end;
