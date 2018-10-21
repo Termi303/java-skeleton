@@ -10,24 +10,19 @@ public class Question4 {
 			int start = 0, end = 0;
 			long sum = 0L;
 			while(end < arr[i].length) {
-				if(rows[i][end].equals("X")) arr[i][end] = -1L;
-				else arr[i][end] = (long)(Integer.parseInt(rows[i][end]));
-
-				if(arr[i][end] == -1L) {
+				if(rows[i][end].equals("X")) {
 					end++;
 					start = end;
 					sum = 0L;
 					continue;
-				} else {
-					if(end-start == numberMachines) {
-						sum = (sum - arr[i][start] + arr[i][end]);
-						start++;
-						end++;
-					} else {
-						sum += arr[i][end++];
-					}
-					if(end-start == numberMachines && sum < result) result = sum;
 				}
+				arr[i][end] = (long)(Integer.parseInt(rows[i][end]));
+				if(end-start == numberMachines) {
+					sum = (sum - arr[i][start++] + arr[i][end++]);
+				} else {
+					sum += arr[i][end++];
+				}
+				if(end-start == numberMachines && sum < result) result = sum;
 			}
 		}
 		if(result == bigNumber) return 0;
