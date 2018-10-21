@@ -40,7 +40,7 @@ public class TestQ1 extends TestCase {
     }
 
     public static void testTrie() {
-        int sz = 10;
+        int sz = 100;
         int[] arr = new int[sz];
         Random random = new Random();
         for(int i = 1; i <= 10000; i++) {

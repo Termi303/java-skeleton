@@ -22,12 +22,12 @@ public class Question6 {
 	}
 
 	public static int shortestServerRoute(int numServers, int targetServer, int[][] times) {
-		// TODO Auto-generated method stub
-		//return -1;
 		int[] minDistance = new int[numServers];
 		boolean[] visited = new boolean[numServers];
+		List<Integer> pos = new LinkedList<>();
 		for(int i = 0; i < numServers; i++) {
 			minDistance[i] = 2147483647;
+			pos.add(i);
 		}
 
 		PriorityQueue<Pair> S = new PriorityQueue<>();
@@ -38,8 +38,9 @@ public class Question6 {
 			visited[p.where] = true;
 			minDistance[p.where] = p.dist;
 			if(p.where == targetServer) break;
-			for(int i = 0; i < numServers; i++) {
-				if(!visited[i] && p.dist + times[p.where][i] < minDistance[i]) {
+			pos.remove(p.where);
+			for(int i : pos) {
+				if(p.dist + times[p.where][i] < minDistance[i]) {
 					minDistance[i] = p.dist + times[p.where][i];
 					S.add(new Pair(i, minDistance[i]));
 				}
