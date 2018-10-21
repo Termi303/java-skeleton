@@ -1,6 +1,8 @@
 package answers;
 
 import helpers.Edge;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Question3 {
 
@@ -20,43 +22,42 @@ public class Question3 {
 		int result = 0;
 		base <<= numNodes;
 		int tmp = 0;
-		int x = 0;
 		int y = 0;
-		boolean[] dist = new boolean[numNodes];
+		List<Integer> ones = new ArrayList<>(32);
+		List<Integer> zeros = new ArrayList<>(32);
 
 		boolean good = true;
 		for(int i = 1; i <= base; i++) {
 			tmp = i;
-			x = y = 0;
+			y = 0;
 			good = true;
+			ones.clear();
+			zeros.clear();
 			for(int j = 0; j < numNodes; j++) {
 				if(tmp%2 == 1) {
-					dist[j] = true;
-					for(int k = 0; k < j; k++) {
-						if(dist[k] && connected[j][k]) {
+					ones.add(j);
+					for(int k = ones.size()-2; k >= 0; k--) {
+						if(connected[j][ones.get(k)]) {
 							good = false;
 							break;
 						}
 					}
-					x++;
 				} else {
-					dist[j] = false;
+					zeros.add(j);
 				}
 				if(!good) break;
 				tmp >>= 1;
 			}
 			if(!good) continue;
-			for(int j = 0; j < numNodes; j++) {
-				if(!dist[j]) {
-					for(int k = 0; k < numNodes; k++) {
-						if(dist[k] && connected[j][k]) {
-							y++;
-							break;
-						}
+			for(int j = 0; j < zeros.size(); j++) {
+				for(int k = 0; k < ones.size(); k++) {
+					if(connected[zeros.get(j)][ones.get(k)]) {
+						y++;
+						break;
 					}
 				}
 			}
-			if(x-y > result) result = x-y;
+			if(ones.size()-y > result) result = ones.size()-y;
 		}
 		return result;
 	}
