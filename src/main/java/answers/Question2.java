@@ -18,8 +18,10 @@ public class Question2 {
 		List<Integer> listIn = new ArrayList<>();
 		List<Integer> listOut = new ArrayList<>();
 
-		Arrays.sort(cashflowIn);
-		Arrays.sort(cashflowOut);
+		//With sorting - 67.56
+		//Without sorting - ?
+		//Arrays.sort(cashflowIn);
+		//Arrays.sort(cashflowOut);
 
 		processCashflow(cashflowIn, listIn);
 		processCashflow(cashflowOut, listOut);
