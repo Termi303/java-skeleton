@@ -16,7 +16,7 @@ public class Question1 {
 	}
 
 	public static int bestMergedPortfolio(int[] portfolios) {
-		return (portfolios.length >= 16) ? trie(portfolios) : brute(portfolios);
+		return (portfolios.length >= 101) ? trie(portfolios) : brute(portfolios);
 	}
 
 	public static int brute(int[] portfolios) {
