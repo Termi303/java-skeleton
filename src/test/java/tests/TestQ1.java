@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import answers.*;
+import java.util.*;
 
 public class TestQ1 extends TestCase {
     public TestQ1( String testName )
@@ -36,5 +37,25 @@ public class TestQ1 extends TestCase {
         int[] arr = new int[100];
         for(int i = 0; i < 100; i++) arr[i] = i+1;
         assertEquals(127, Question1.bestMergedPortfolio(arr));
+    }
+
+    public static void testTrie() {
+        int sz = 10;
+        int[] arr = new int[sz];
+        Random random = new Random();
+        for(int i = 1; i <= 10000; i++) {
+            System.out.println("Running test #" + i);
+            for(int j = 0; j < sz; j++) {
+                arr[j] = random.nextInt(65535) + 1;
+            }
+            if(Question1.brute(arr) != Question1.trie(arr)) {
+                for(int j = 0; j < sz; j++) {
+                    System.out.print(arr[j] + " ");
+                }
+                System.out.println("Brute: " + Question1.brute(arr));
+                System.out.println("Trie: " + Question1.trie(arr));
+                assert false;
+            }
+        }
     }
 }

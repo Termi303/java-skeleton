@@ -19,7 +19,7 @@ public class Question1 {
 		return (portfolios.length >= 16) ? trie(portfolios) : brute(portfolios);
 	}
 
-	private static int brute(int[] portfolios) {
+	public static int brute(int[] portfolios) {
 		int result = 0;
 		for(int i = 0; i < portfolios.length; i++) {
 			for(int j = i+1; j < portfolios.length; j++) {
@@ -29,7 +29,7 @@ public class Question1 {
 		return result;
 	}
 
-	private static int trie(int[] portfolios) {
+	public static int trie(int[] portfolios) {
 		int[] coefficient = new int[16];
 		coefficient[0] = 1;
 		for(int i = 1; i < 16; i++) coefficient[i] = coefficient[i-1]*2;
@@ -41,7 +41,7 @@ public class Question1 {
 		Node insertNode = root;
 		for(int x : portfolios) {
 			tmp = x;
-			for(int j = 0; j < 15; j++) {
+			for(int j = 0; j < 16; j++) {
 				dist[j] = (tmp%2 == 1) ? true : false;
 				tmp >>= 1;
 			}
