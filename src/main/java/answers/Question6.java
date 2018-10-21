@@ -67,7 +67,7 @@ public class Question6 {
 			visited[p.where] = true;
 			minDistance[p.where] = p.dist;
 			if(p.where == targetServer) break;
-			pos.remove(p.where);
+			pos.remove(new Integer(p.where));
 			for(int i : pos) {
 				if(p.dist + times[p.where][i] < minDistance[i]) {
 					minDistance[i] = p.dist + times[p.where][i];
