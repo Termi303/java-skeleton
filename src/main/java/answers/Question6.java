@@ -53,10 +53,14 @@ public class Question6 {
 	public static int optimal(int numServers, int targetServer, int[][] times) {
 		int[] minDistance = new int[numServers];
 		boolean[] visited = new boolean[numServers];
-		List<Integer> pos = new LinkedList<>();
+		int start = 0;
+		int end = numServers-1;
+		int[] next = new int[numServers];
+		int[] prev = new int[numServers];
 		for(int i = 0; i < numServers; i++) {
 			minDistance[i] = 2147483647;
-			pos.add(i);
+			next[i] = i+1;
+			prev[i] = i-1;
 		}
 
 		PriorityQueue<Pair> S = new PriorityQueue<>();
@@ -67,12 +71,20 @@ public class Question6 {
 			visited[p.where] = true;
 			minDistance[p.where] = p.dist;
 			if(p.where == targetServer) break;
-			pos.remove(new Integer(p.where));
-			for(int i : pos) {
+
+			if(p.where == start) start = next[p.where];
+			else if(p.where == end) end = prev[p.where];
+			else {
+				next[prev[p.where]] = next[p.where];
+				prev[next[p.where]] = prev[p.where];
+			}
+			for(int i = start;;) {
 				if(p.dist + times[p.where][i] < minDistance[i]) {
 					minDistance[i] = p.dist + times[p.where][i];
 					S.add(new Pair(i, minDistance[i]));
 				}
+				if(i == end) break;
+				i = next[i];
 			}
 		}
 		return minDistance[targetServer];
