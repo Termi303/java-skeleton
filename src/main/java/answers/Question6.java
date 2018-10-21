@@ -32,7 +32,7 @@ public class Question6 {
 
 		PriorityQueue<Pair> S = new PriorityQueue<>();
 		S.add(new Pair(0, 0));
-		while(S.size() > 0 && !visited[targetServer]) {
+		while(true) {
 			Pair p = S.poll();
 			if(visited[p.where]) continue;
 			visited[p.where] = true;
