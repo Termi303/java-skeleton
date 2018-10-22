@@ -39,11 +39,11 @@ public class TestQ1 extends TestCase {
         assertEquals(127, Question1.bestMergedPortfolio(arr));
     }
 
-    public static void testTrie() {
+    /*public static void testTrie() {
         int sz = 100;
         int[] arr = new int[sz];
         Random random = new Random();
-        for(int i = 1; i <= 1000; i++) {
+        for(int i = 1; i <= 0; i++) {
             System.out.println("Running test #" + i);
             for(int j = 0; j < sz; j++) {
                 arr[j] = random.nextInt(65536);
@@ -54,6 +54,26 @@ public class TestQ1 extends TestCase {
                 }
                 System.out.println("Brute: " + Question1.brute(arr));
                 System.out.println("Trie: " + Question1.trie(arr));
+                assert false;
+            }
+        }
+    }*/
+    public static void testOptimal() {
+        int sz = 100;
+        int[] arr = new int[sz];
+        Random random = new Random();
+        for(int i = 1; i <= 100000; i++) {
+            System.out.println("Running test #" + i);
+            for(int j = 0; j < sz; j++) {
+                arr[j] = random.nextInt(65536);
+                //arr[j] = 35000 + random.nextInt(5000);
+            }
+            if(Question1.brute(arr) != Question1.optimal(arr)) {
+                for(int j = 0; j < sz; j++) {
+                    System.out.print(arr[j] + " ");
+                }
+                System.out.println("Brute: " + Question1.brute(arr));
+                System.out.println("Optimal: " + Question1.optimal(arr));
                 assert false;
             }
         }
