@@ -2,6 +2,7 @@ package answers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 public class Question1 {
 
@@ -19,14 +20,24 @@ public class Question1 {
 	}
 
 	public static int bestMergedPortfolio(int[] portfolios) {
-		return optimal(portfolios);
+		return brute(portfolios);
 	}
 
 	public static int brute(int[] portfolios) {
 		int result = 0;
+		Set<Integer> set = new HashSet<>();
 		for(int i = 0; i < portfolios.length; i++) {
-			for(int j = i+1; j < portfolios.length; j++) {
-				result = Math.max(result, (portfolios[i]^portfolios[j]));
+			set.add(portfolios[i]);
+		}
+		int[] arr = new int[set.size()];
+		int where = 0;
+		for(int x : set) {
+			arr[where] = x;
+			where++;
+		}
+		for(int i = 0; i < arr.length; i++) {
+			for(int j = i+1; j < arr.length; j++) {
+				result = Math.max(result, (arr[i]^arr[j]));
 			}
 		}
 		return result;
