@@ -43,10 +43,10 @@ public class TestQ1 extends TestCase {
         int sz = 100;
         int[] arr = new int[sz];
         Random random = new Random();
-        for(int i = 1; i <= 10000; i++) {
+        for(int i = 1; i <= 1000; i++) {
             System.out.println("Running test #" + i);
             for(int j = 0; j < sz; j++) {
-                arr[j] = random.nextInt(65535) + 1;
+                arr[j] = random.nextInt(65536);
             }
             if(Question1.brute(arr) != Question1.trie(arr)) {
                 for(int j = 0; j < sz; j++) {
