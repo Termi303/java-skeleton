@@ -5,9 +5,10 @@ public class Question5 {
 
 	public static int shareExchange(int[] allowedAllocations, int totalValue) {
 		int[] result = new int[totalValue+1];
+		int bigNum = 2147483647;
 		//Arrays.sort(allowedAllocations);
 		for(int i = 1; i <= totalValue; i++) {
-			result[i] = 1000000007;
+			result[i] = bigNum;
 		}
 		for(int val : allowedAllocations) {
 			for(int i = 0; i+val <= totalValue; i++) {
@@ -16,7 +17,7 @@ public class Question5 {
 				}
 			}
 		}
-		return result[totalValue];
+		return (result[totalValue] == bigNum) ? 0 : result[totalValue];
 	}
 
 }
