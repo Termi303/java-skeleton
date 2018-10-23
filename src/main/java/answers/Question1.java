@@ -21,18 +21,8 @@ public class Question1 {
 		return brute(portfolios);
 	}
 
-	public static int brute(int[] portfolios) {
+	public static int brute(int[] arr) {
 		int result = 0;
-		Set<Integer> set = new HashSet<>();
-		for(int i = 0; i < portfolios.length; i++) {
-			set.add(portfolios[i]);
-		}
-		int[] arr = new int[set.size()];
-		int where = 0;
-		for(int x : set) {
-			arr[where] = x;
-			where++;
-		}
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = i+1; j < arr.length; j++) {
 				result = Math.max(result, (arr[i]^arr[j]));
